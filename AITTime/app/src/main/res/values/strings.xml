@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AITTime</string>
+
+    <string name="button_time">Show time</string>
+    <string name="placeholder_date">Date comes here</string>
+    <string name="header_date">The date is:</string>
 </resources>
