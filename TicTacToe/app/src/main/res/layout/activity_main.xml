@@ -5,16 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="15dp"
     tools:context="hu.ait.android.tictactoe.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Hello World!"/>
 
     <hu.ait.android.tictactoe.TicTacToeView
+        android:id="@+id/ticTacToeView"
         android:layout_width="200dp"
-        android:layout_height="200dp"
-        />
+        android:layout_height="200dp" />
+
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear"/>
 
 </LinearLayout>
