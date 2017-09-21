@@ -25,4 +25,37 @@ public class TicTacToeModel {
             {EMPTY, EMPTY, EMPTY}
     };
 
+    private int nextPlayer = CIRCLE;
+
+    public void switchNextPlayer() {
+        nextPlayer = (nextPlayer == CIRCLE) ? CROSS : CIRCLE;
+
+        /*if (nextPlayer == CIRCLE) {
+            nextPlayer = CROSS;
+        } else {
+            nextPlayer = CIRCLE;
+        }*/
+    }
+
+    public int getFieldContent(int x, int y) {
+        return model[x][y];
+    }
+
+    public void setFieldContent(int x, int y, int content) {
+        model[x][y] = content;
+    }
+
+    public int getNextPlayer() {
+        return nextPlayer;
+    }
+
+    public void resetGame() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                model[i][j] = EMPTY;
+            }
+        }
+
+        nextPlayer = CIRCLE;
+    }
 }

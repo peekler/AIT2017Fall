@@ -11,17 +11,33 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:text="Hello World!" />
 
-    <hu.ait.android.tictactoe.TicTacToeView
-        android:id="@+id/ticTacToeView"
-        android:layout_width="200dp"
-        android:layout_height="200dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="50dp"
+        android:paddingBottom="30dp"
+        >
+        <hu.ait.android.tictactoe.TicTacToeView
+            android:id="@+id/ticTacToeView"
+            android:layout_width="250dp"
+            android:layout_height="250dp" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnClear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Clear"/>
+        android:text="Clear" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:textSize="24sp"
+        android:text="The next player is O"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
