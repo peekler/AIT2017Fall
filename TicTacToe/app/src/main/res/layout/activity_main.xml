@@ -2,8 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0000ff"
     android:orientation="vertical"
     android:padding="15dp"
     tools:context="hu.ait.android.tictactoe.MainActivity">
@@ -16,12 +18,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:gravity="center"
-        android:paddingTop="50dp"
+        android:orientation="horizontal"
         android:paddingBottom="30dp"
-        >
-        <hu.ait.android.tictactoe.TicTacToeView
+        android:paddingTop="50dp">
+
+        <hu.ait.android.tictactoe.view.TicTacToeView
             android:id="@+id/ticTacToeView"
             android:layout_width="250dp"
             android:layout_height="250dp" />
@@ -33,11 +35,19 @@
         android:layout_height="wrap_content"
         android:text="Clear" />
 
-    <TextView
-        android:id="@+id/tvStatus"
-        android:textSize="24sp"
-        android:text="The next player is O"
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The next player is O"
+            android:textColor="#ffffff"
+            android:textSize="30sp" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
 
 </LinearLayout>

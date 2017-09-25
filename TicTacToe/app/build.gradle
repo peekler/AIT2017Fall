@@ -30,5 +30,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.0.2'
     compile 'com.android.support:design:26.0.2'
 
+    compile 'com.facebook.shimmer:shimmer:0.1.0@aar'
+
     testCompile 'junit:junit:4.12'
 }

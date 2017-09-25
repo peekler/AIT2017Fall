@@ -1,22 +1,27 @@
-package hu.ait.android.tictactoe;
+package hu.ait.android.tictactoe.view;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PointF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
+import hu.ait.android.tictactoe.MainActivity;
+import hu.ait.android.tictactoe.R;
+import hu.ait.android.tictactoe.data.TicTacToeModel;
 
 public class TicTacToeView extends View {
 
     private Paint paintBg;
     private Paint paintLine;
+    private Paint paintText;
+
+    private Bitmap bitmapBg;
 
     public TicTacToeView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -29,21 +34,35 @@ public class TicTacToeView extends View {
         paintLine.setColor(Color.WHITE);
         paintLine.setStyle(Paint.Style.STROKE);
         paintLine.setStrokeWidth(5);
+
+        paintText = new Paint();
+        paintText.setColor(Color.YELLOW);
+        paintText.setTextSize(60);
+
+        bitmapBg = BitmapFactory.decodeResource(getResources(), R.drawable.background);
     }
 
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        paintText.setTextSize(getHeight() / 3);
+
+        bitmapBg = Bitmap.createScaledBitmap(bitmapBg, getWidth(), getHeight(), false);
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         // draw background
-        canvas.drawRect(0, 0, getWidth(), getHeight(), paintBg);
+        //canvas.drawRect(0, 0, getWidth(), getHeight(), paintBg);
+        canvas.drawBitmap(bitmapBg, 0, 0, null);
 
         // draw board
         drawGameArea(canvas);
-
         // draw players
         drawPlayers(canvas);
+
+        canvas.drawText("6", 0, getHeight()/3, paintText);
     }
 
     private void drawPlayers(Canvas canvas) {

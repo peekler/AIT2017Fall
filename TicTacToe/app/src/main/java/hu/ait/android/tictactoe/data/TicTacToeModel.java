@@ -1,4 +1,4 @@
-package hu.ait.android.tictactoe;
+package hu.ait.android.tictactoe.data;
 
 public class TicTacToeModel {
 
