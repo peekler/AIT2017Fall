@@ -7,10 +7,26 @@
     android:orientation="vertical"
     tools:context="hu.ait.android.highlowgame.GameActivity">
 
-    <EditText
-        android:id="@+id/etGuess"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/etName"
+            android:hint="Enter username here"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/etGuess"
+            android:inputType="number"
+            android:hint="Enter number here"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/btnGuess"
@@ -21,7 +37,8 @@
     <TextView
         android:id="@+id/tvStatus"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="26sp"/>
 
 
 </LinearLayout>
