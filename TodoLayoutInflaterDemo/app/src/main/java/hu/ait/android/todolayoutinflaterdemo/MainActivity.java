@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -39,14 +40,21 @@ public class MainActivity extends AppCompatActivity {
         TextView tvTodo = (TextView) todoRow.findViewById(R.id.tvTodo);
         tvTodo.setText(etTodo.getText().toString());
 
+        ImageView ivTodo = todoRow.findViewById(R.id.ivTodo);
+        if (cbImportant.isChecked()) {
+            ivTodo.setImageResource(R.mipmap.ic_launcher_round);
+        }
+
+
         Button btnDelete = (Button) todoRow.findViewById(R.id.btnDelete);
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 layoutContent.removeView(todoRow);
+
             }
         });
 
-        layoutContent.addView(todoRow);
+        layoutContent.addView(todoRow, 0);
     }
 }

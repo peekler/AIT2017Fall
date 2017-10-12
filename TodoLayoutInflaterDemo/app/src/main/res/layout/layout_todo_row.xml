@@ -14,19 +14,27 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@mipmap/ic_launcher"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/tvTodo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="22sp"
-        android:text="Data"/>
+        android:text="Data" />
 
-    <Button
-        android:id="@+id/btnDelete"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:text="Delete"/>
+        android:orientation="horizontal"
+        android:gravity="right">
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete" />
+    </LinearLayout>
 
 </LinearLayout>
