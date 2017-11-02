@@ -18,6 +18,7 @@ import java.util.Date;
 import hu.ait.android.recylerviewdemo.adapter.TodoRecyclerAdapter;
 import hu.ait.android.recylerviewdemo.data.Todo;
 import hu.ait.android.recylerviewdemo.touch.TodoItemTouchHelperCallback;
+import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,8 +47,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        ((TodoApplication)getApplication()).openRealm();
+
         RecyclerView recyclerViewTodo = (RecyclerView) findViewById(R.id.recyclerTodo);
-        adapter = new TodoRecyclerAdapter();
+        adapter = new TodoRecyclerAdapter(this,
+                ((TodoApplication)getApplication()).getRealmTodo());
 
         recyclerViewTodo.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewTodo.setHasFixedSize(true);
@@ -57,6 +61,13 @@ public class MainActivity extends AppCompatActivity {
         touchHelper.attachToRecyclerView(recyclerViewTodo);
 
         recyclerViewTodo.setAdapter(adapter);
+
+
+        new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                .setTarget(findViewById(R.id.fab))
+                .setPrimaryText("New todo")
+                .setSecondaryText("Click here for new todo")
+                .show();
     }
 
     private void showAddTodoDialog() {
@@ -70,9 +81,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                adapter.addTodo(new Todo(
-                        new Date(System.currentTimeMillis()).toString(),
-                        input.getText().toString(), false));
+                adapter.addTodo(input.getText().toString());
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -85,4 +94,11 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
+
+    @Override
+    protected void onDestroy() {
+        ((TodoApplication)getApplication()).closeRealm();
+
+        super.onDestroy();
+    }
 }

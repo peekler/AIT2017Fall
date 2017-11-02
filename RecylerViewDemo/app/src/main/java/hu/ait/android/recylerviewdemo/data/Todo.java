@@ -1,10 +1,16 @@
 package hu.ait.android.recylerviewdemo.data;
 
-public class Todo {
+import io.realm.RealmObject;
+
+public class Todo extends RealmObject {
 
     private String todoTitle;
     private String createDate;
     private boolean done;
+
+    public Todo() {
+
+    }
 
     public Todo(String todoTitle, String createDate, boolean done) {
         this.todoTitle = todoTitle;

@@ -1,29 +1,48 @@
 package hu.ait.android.recylerviewdemo.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import hu.ait.android.recylerviewdemo.R;
 import hu.ait.android.recylerviewdemo.data.Todo;
 import hu.ait.android.recylerviewdemo.touch.TodoTouchHelperAdapter;
+import io.realm.Realm;
+import io.realm.RealmResults;
+import io.realm.Sort;
 
 public class TodoRecyclerAdapter extends RecyclerView.Adapter<TodoRecyclerAdapter.ViewHolder>
   implements TodoTouchHelperAdapter {
 
     private List<Todo> todoList;
 
-    public TodoRecyclerAdapter() {
+    private Context context;
+    private Realm realmTodo;
+
+
+    public TodoRecyclerAdapter(Context context,
+                               Realm realmTodo) {
+        this.context = context;
+        this.realmTodo = realmTodo;
+
         todoList = new ArrayList<Todo>();
-        for (int i = 0; i < 20; i++) {
-            todoList.add(new Todo("Todo"+i, "16. 10. 2017", false));
+
+        RealmResults<Todo> todoResult =
+                realmTodo.where(Todo.class).findAll().sort("todoTitle",
+                Sort.ASCENDING);
+
+        for (Todo todo : todoResult) {
+            todoList.add(todo);
         }
     }
 
@@ -37,11 +56,24 @@ public class TodoRecyclerAdapter extends RecyclerView.Adapter<TodoRecyclerAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Todo todoData = todoList.get(position);
+        final Todo todoData = todoList.get(position);
 
         holder.tvDate.setText(todoData.getCreateDate());
         holder.cbTodo.setText(todoData.getTodoTitle());
         holder.cbTodo.setChecked(todoData.isDone());
+
+
+        holder.cbTodo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                realmTodo.beginTransaction();
+
+                todoData.setDone(isChecked);
+
+                realmTodo.commitTransaction();
+            }
+        });
+
     }
 
     @Override
@@ -51,6 +83,12 @@ public class TodoRecyclerAdapter extends RecyclerView.Adapter<TodoRecyclerAdapte
 
     @Override
     public void onItemDismiss(int position) {
+        Todo todoToDelete = todoList.get(position);
+        realmTodo.beginTransaction();
+        todoToDelete.deleteFromRealm();
+        realmTodo.commitTransaction();
+
+
         todoList.remove(position);
         //notifyDataSetChanged();
         notifyItemRemoved(position);
@@ -72,9 +110,19 @@ public class TodoRecyclerAdapter extends RecyclerView.Adapter<TodoRecyclerAdapte
         notifyItemMoved(fromPosition, toPosition);
     }
 
-    public void addTodo(Todo todo) {
-        todoList.add(todo);
-        notifyDataSetChanged();
+    public void addTodo(String todoTitle) {
+        realmTodo.beginTransaction();
+
+        Todo newTodo = realmTodo.createObject(Todo.class);
+        newTodo.setTodoTitle(todoTitle);
+        newTodo.setCreateDate(
+                new Date(System.currentTimeMillis()).toString());
+        newTodo.setDone(false);
+
+        realmTodo.commitTransaction();
+
+        todoList.add(0, newTodo);
+        notifyItemInserted(0);
     }
 
 
