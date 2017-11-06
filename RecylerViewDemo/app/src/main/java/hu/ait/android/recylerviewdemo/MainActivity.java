@@ -1,6 +1,7 @@
 package hu.ait.android.recylerviewdemo;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -12,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Date;
 
@@ -22,7 +24,11 @@ import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String KEY_TODO_ID = "KEY_TODO_ID";
+    public static final int REQUEST_CODE_EDIT = 1001;
     private TodoRecyclerAdapter adapter;
+
+    private int positionToEdit = -1;
 
 
     @Override
@@ -100,5 +106,25 @@ public class MainActivity extends AppCompatActivity {
         ((TodoApplication)getApplication()).closeRealm();
 
         super.onDestroy();
+    }
+
+    public void openEditActivity(int adapterPosition, String todoID) {
+        positionToEdit = adapterPosition;
+
+        Intent intentEdit = new Intent(this, EditItemActivity.class);
+        intentEdit.putExtra(KEY_TODO_ID, todoID);
+        startActivityForResult(intentEdit, REQUEST_CODE_EDIT);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_EDIT && resultCode == RESULT_OK) {
+            String todoIDThatWasEdited = data.getStringExtra(KEY_TODO_ID);
+
+            adapter.updateTodo(todoIDThatWasEdited, positionToEdit);
+
+        } else {
+            Toast.makeText(this, "Edit was cancelled", Toast.LENGTH_LONG).show();
+        }
     }
 }
