@@ -2,6 +2,8 @@ package hu.ait.android.recylerviewdemo;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String KEY_TODO_ID = "KEY_TODO_ID";
     public static final int REQUEST_CODE_EDIT = 1001;
+    public static final String KEY_FIRST = "KEY_FIRST";
     private TodoRecyclerAdapter adapter;
 
     private int positionToEdit = -1;
@@ -69,11 +72,31 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewTodo.setAdapter(adapter);
 
 
-        new MaterialTapTargetPrompt.Builder(MainActivity.this)
-                .setTarget(findViewById(R.id.fab))
-                .setPrimaryText("New todo")
-                .setSecondaryText("Click here for new todo")
-                .show();
+        if (isFirstStart()) {
+            new MaterialTapTargetPrompt.Builder(MainActivity.this)
+                    .setTarget(findViewById(R.id.fab))
+                    .setPrimaryText("New todo")
+                    .setSecondaryText("Click here for new todo")
+                    .show();
+        }
+    }
+
+    private boolean isFirstStart() {
+        return PreferenceManager.getDefaultSharedPreferences(
+                this).getBoolean(KEY_FIRST, true);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        saveFirstStartFlag();
+    }
+
+    private void saveFirstStartFlag() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putBoolean(KEY_FIRST, false);
+        edit.commit();
     }
 
     private void showAddTodoDialog() {
