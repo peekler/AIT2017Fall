@@ -15,15 +15,19 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.dd.CircularProgressButton;
+import com.google.gson.Gson;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import hu.bme.aut.android.moneyconverter.data.MoneyResult;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private final String URL_BASE =
-            "http://api.fixer.io/latest?base=USD&symbols=HUF";
+            "http://api.fixer.io/latest?base=USD";
 
     private CircularProgressButton btnGetRate;
     private TextView tvResult;
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 btnGetRate.setProgress(50);
+
                 String query = URL_BASE;
                 new HttpGetTask(getApplicationContext()).
                         execute(query);
@@ -52,45 +57,28 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-                brWeatherReceiver,
-                new IntentFilter(HttpGetTask.FILTER_RESULT)
-        );
+        EventBus.getDefault().register(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        LocalBroadcastManager.getInstance(
-                this).unregisterReceiver(brWeatherReceiver);
+        EventBus.getDefault().unregister(this);
     }
-
-    private BroadcastReceiver brWeatherReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String rawResult = intent.getStringExtra(
-                    HttpGetTask.KEY_RESULT);
-
-            try {
-                // TODO: parse JSON here
-
-                tvResult.setText(rawResult);
-            } catch (Exception e) {
-                e.printStackTrace();
-                btnGetRate.setProgress(-1);
+@S
+    public void onEvent(MoneyResult moneyResult) {
+        tvResult.setText(
+                    moneyResult.getRates().gethUF() + "\n" +
+                            moneyResult.getRates().geteUR());
+        btnGetRate.setProgress(100);
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                btnGetRate.setProgress(0);
             }
-
-            btnGetRate.setProgress(100);
-
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    btnGetRate.setProgress(0);
-                }
-            }, 1500);
-        }
-    };
+        }, 1500);
+    }
 
 
 }
