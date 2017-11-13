@@ -18,6 +18,7 @@ import com.dd.CircularProgressButton;
 import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -65,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         EventBus.getDefault().unregister(this);
     }
-@S
+
+
+    @Subscribe
     public void onEvent(MoneyResult moneyResult) {
         tvResult.setText(
                     moneyResult.getRates().gethUF() + "\n" +
