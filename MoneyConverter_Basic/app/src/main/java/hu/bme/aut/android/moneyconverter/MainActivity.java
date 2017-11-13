@@ -4,24 +4,28 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.dd.CircularProgressButton;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     private final String URL_BASE =
             "http://api.fixer.io/latest?base=USD&symbols=HUF";
 
+    private CircularProgressButton btnGetRate;
     private TextView tvResult;
 
     @Override
@@ -30,12 +34,15 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         tvResult = (TextView) findViewById(R.id.tvResult);
-        Button btnGetRate = (Button) findViewById(R.id.btnGetRate);
+
+        btnGetRate = (CircularProgressButton) findViewById(R.id.btnGetRate);
+        btnGetRate.setIndeterminateProgressMode(true);
+
         btnGetRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnGetRate.setProgress(50);
                 String query = URL_BASE;
-
                 new HttpGetTask(getApplicationContext()).
                         execute(query);
             }
@@ -65,15 +72,23 @@ public class MainActivity extends ActionBarActivity {
                     HttpGetTask.KEY_RESULT);
 
             try {
-                JSONObject rawJson = new JSONObject(rawResult);
-                String hufValue =rawJson.getJSONObject("rates").
-                        getString("HUF");
-                tvResult.setText(hufValue);
+                // TODO: parse JSON here
 
-            } catch (JSONException e) {
+                tvResult.setText(rawResult);
+            } catch (Exception e) {
                 e.printStackTrace();
+                btnGetRate.setProgress(-1);
             }
 
+            btnGetRate.setProgress(100);
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    btnGetRate.setProgress(0);
+                }
+            }, 1500);
         }
     };
 

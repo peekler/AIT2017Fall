@@ -25,41 +25,8 @@ public class HttpGetTask extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         String result = "";
-        HttpURLConnection connection = null;
-        InputStream is = null;
-        try {
-            URL url = new URL(params[0]);
-            connection = (HttpURLConnection) url.openConnection();
-            connection.setConnectTimeout(10000);
-            connection.setReadTimeout(10000);
 
-            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                is = connection.getInputStream();
-
-                int ch;
-                ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                while ((ch = is.read()) != -1) {
-                    bos.write(ch);
-                }
-
-                result = new String(bos.toByteArray());
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (is != null) {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (connection != null) {
-                connection.disconnect();
-            }
-        }
+        // Todo: network communication
 
         return result;
     }
