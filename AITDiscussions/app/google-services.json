@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "274983489320",
+    "firebase_url": "https://aitdiscussions-5a852.firebaseio.com",
+    "project_id": "aitdiscussions-5a852",
+    "storage_bucket": "aitdiscussions-5a852.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274983489320:android:182911b44503a7c7",
+        "android_client_info": {
+          "package_name": "hu.autsoft.android.aitdiscussions"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "274983489320-5ggfdrrjf8qe5j448j3mgss1a0jsfl1j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hu.autsoft.android.aitdiscussions",
+            "certificate_hash": "679d077dd087334a5834d3d30791147420aace41"
+          }
+        },
+        {
+          "client_id": "274983489320-459kledifkiqptl6cs9dq8qqslt7o47i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxypk0j2lzb8AiKFo-dtOIAm2agOp-6NY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "274983489320-459kledifkiqptl6cs9dq8qqslt7o47i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
