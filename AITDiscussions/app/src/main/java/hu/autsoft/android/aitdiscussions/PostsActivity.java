@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,9 +18,19 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import hu.autsoft.android.aitdiscussions.adapter.PostsAdapter;
+import hu.autsoft.android.aitdiscussions.data.Post;
 
 public class PostsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private PostsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +61,57 @@ public class PostsActivity extends AppCompatActivity
         TextView tvUserEmail = navigationView.getHeaderView(0).findViewById(R.id.tvUserEmail);
         tvUserEmail.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
 
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewPosts);
+        adapter = new PostsAdapter(this,
+                FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
+        initPostsListener();
     }
+
+    private void initPostsListener() {
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("posts");
+        reference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Post post = dataSnapshot.getValue(Post.class);
+                adapter.addPost(post, dataSnapshot.getKey());
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                adapter.removePostByKey(dataSnapshot.getKey());
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+    }
+
+
+
+
 
     @Override
     public void onBackPressed() {
