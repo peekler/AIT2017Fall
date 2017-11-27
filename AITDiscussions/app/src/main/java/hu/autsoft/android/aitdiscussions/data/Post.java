@@ -10,6 +10,7 @@ public class Post {
     private String author;
     private String title;
     private String body;
+    private String imgUrl;
 
     public Post(){
     }
@@ -51,5 +52,14 @@ public class Post {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }

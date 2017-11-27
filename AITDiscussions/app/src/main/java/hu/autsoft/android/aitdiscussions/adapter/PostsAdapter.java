@@ -8,9 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -67,6 +69,13 @@ public class PostsAdapter
         holder.tvBody.setText(post.getBody());
         holder.tvTitle.setText(post.getTitle());
 
+        if (post.getImgUrl() != null) {
+            Glide.with(context).load(post.getImgUrl()).into(holder.ivPostImg);
+            holder.ivPostImg.setVisibility(View.VISIBLE);
+        } else {
+            holder.ivPostImg.setVisibility(View.GONE);
+        }
+
         if (uId.equals(post.getUid())) {
             holder.btnDelete.setVisibility(View.VISIBLE);
         } else {
@@ -120,6 +129,7 @@ public class PostsAdapter
         public TextView tvTitle;
         public TextView tvBody;
         public Button btnDelete;
+        public ImageView ivPostImg;
 
 
         public ViewHolder(View itemView) {
@@ -129,6 +139,7 @@ public class PostsAdapter
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvBody = itemView.findViewById(R.id.tvBody);
             btnDelete = itemView.findViewById(R.id.btnDelete);
+            ivPostImg = itemView.findViewById(R.id.ivPostImg);
         }
     }
 
