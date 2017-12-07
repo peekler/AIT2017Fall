@@ -11,9 +11,11 @@ import hu.ait.dialogfragmentdemo.fragment.OnMessageFragmentAnswer;
 import hu.ait.dialogfragmentdemo.fragment.SelectFruitFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements OnMessageFragmentAnswer, SelectFruitFragment.OptionsFragmentInterface {
+        implements OnMessageFragmentAnswer,
+        SelectFruitFragment.OptionsFragmentInterface {
 
     public static final String KEY_MSG = "KEY_MSG";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +41,15 @@ public class MainActivity extends AppCompatActivity
         btnDialog2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new SelectFruitFragment().show(getSupportFragmentManager(),SelectFruitFragment.TAG);
+                new SelectFruitFragment().show(getSupportFragmentManager(),
+                        SelectFruitFragment.TAG);
             }
         });
     }
 
     @Override
-    public void onPositiveSelected() {
-        Toast.makeText(this, "OK was selected", Toast.LENGTH_SHORT).show();
+    public void onPositiveSelected(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
     @Override

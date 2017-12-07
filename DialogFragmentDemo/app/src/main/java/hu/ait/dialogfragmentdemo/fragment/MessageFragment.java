@@ -55,7 +55,7 @@ public class MessageFragment extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
-                onMessageFragmentAnswer.onPositiveSelected();
+                onMessageFragmentAnswer.onPositiveSelected(etName.getText().toString());
             }
         });
         alertDialogBuilder.setNegativeButton("Nope", new DialogInterface.OnClickListener() {

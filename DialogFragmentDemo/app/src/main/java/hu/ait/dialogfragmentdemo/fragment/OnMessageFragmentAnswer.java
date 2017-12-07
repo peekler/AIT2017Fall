@@ -5,6 +5,6 @@ package hu.ait.dialogfragmentdemo.fragment;
  */
 
 public interface OnMessageFragmentAnswer {
-    public void onPositiveSelected();
+    public void onPositiveSelected(String text);
     public void onNegativeSelected();
 }
