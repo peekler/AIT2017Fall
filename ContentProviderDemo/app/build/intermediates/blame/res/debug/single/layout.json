@@ -1,0 +1,66 @@
+[
+    {
+        "merged": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines_media.xml",
+        "source": "C:\\Users\\Peter\\.android\\build-cache\\55f70a06dc43b71f8d9256a729d1b6cd952fd64d\\output\\res\\layout\\notification_template_lines_media.xml"
+    },
+    {
+        "merged": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_custom.xml",
+        "source": "C:\\Users\\Peter\\.android\\build-cache\\55f70a06dc43b71f8d9256a729d1b6cd952fd64d\\output\\res\\layout\\notification_template_big_media_custom.xml"
+    },
+    {
+        "merged": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
+        "source": "C:\\Users\\Peter\\.android\\build-cache\\fc9b44f75c74afbe9538c30208226674fe7a033e\\output\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_action.xml",
+        "source": "C:\\Users\\Peter\\.android\\build-cache\\55f70a06dc43b71f8d9256a729d1b6cd952fd64d\\output\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
+        "source": "C:\\Users\\Peter\\.android\\build-cache\\55f70a06dc43b71f8d9256a729d1b6cd952fd64d\\output\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\Peter\\.android\\build-cache\\fc9b44f75c74afbe9538c30208226674fe7a033e\\output\\res\\layout\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media_custom.xml",
+        "source": "C:\\Users\\Peter\\.android\\build-cache\\55f70a06dc43b71f8d9256a729d1b6cd952fd64d\\output\\res\\layout\\notification_template_media_custom.xml"
+    },
+    {
+        "merged": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\Peter\\.android\\build-cache\\fc9b44f75c74afbe9538c30208226674fe7a033e\\output\\res\\layout\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_cancel_action.xml",
+        "source": "C:\\Users\\Peter\\.android\\build-cache\\55f70a06dc43b71f8d9256a729d1b6cd952fd64d\\output\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
+        "source": "C:\\Users\\Peter\\.android\\build-cache\\55f70a06dc43b71f8d9256a729d1b6cd952fd64d\\output\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
+        "source": "C:\\Users\\Peter\\.android\\build-cache\\fc9b44f75c74afbe9538c30208226674fe7a033e\\output\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_action.xml",
+        "source": "C:\\Users\\Peter\\.android\\build-cache\\fc9b44f75c74afbe9538c30208226674fe7a033e\\output\\res\\layout\\notification_action.xml"
+    },
+    {
+        "merged": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow_custom.xml",
+        "source": "C:\\Users\\Peter\\.android\\build-cache\\55f70a06dc43b71f8d9256a729d1b6cd952fd64d\\output\\res\\layout\\notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow.xml",
+        "source": "C:\\Users\\Peter\\.android\\build-cache\\55f70a06dc43b71f8d9256a729d1b6cd952fd64d\\output\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "D:\\Development\\VC\\MobilWeb\\EA\\05_persistent_storage\\ContentProviderDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\Peter\\.android\\build-cache\\fc9b44f75c74afbe9538c30208226674fe7a033e\\output\\res\\layout\\notification_template_icon_group.xml"
+    }
+]
